@@ -11,6 +11,13 @@
   loop: "{{ terraform_versions }}"
   tags: terraform
 
+- name: Ensure version-specific directories exist
+  file:
+    path: "{{ terraform_install_dir }}/terraform_{{ item }}"
+    state: directory
+  loop: "{{ terraform_versions }}"
+  tags: terraform
+
 - name: Extract Terraform binaries into version-specific directories
   ansible.builtin.unarchive:
     src: "{{ terraform_install_dir }}/terraform_{{ item }}.zip"
@@ -26,3 +33,4 @@
     dest: "/usr/local/bin/terraform"
     state: link
   tags: terraform
+
