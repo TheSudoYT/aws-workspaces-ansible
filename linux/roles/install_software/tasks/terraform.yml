@@ -13,7 +13,7 @@
     - name: Extract Terraform binaries
       ansible.builtin.unarchive:
         src: "{{ terraform_install_dir }}/terraform_{{ item }}.zip"
-        dest: "{{ terraform_install_dir }}"
+        dest: "{{ terraform_install_dir }}_{{ item }"
         remote_src: yes
         creates: "{{ terraform_install_dir }}/terraform_{{ item }}"
       loop: "{{ terraform_versions }}"
@@ -23,26 +23,4 @@
         src: "{{ terraform_install_dir }}/terraform_{{ active_terraform_version }}"
         dest: "/usr/local/bin/terraform"
         state: link
-
-# terraform docs
-
-    - name: Download terraform-docs
-      ansible.builtin.get_url:
-        url: "https://terraform-docs.io/dl/v0.17.0/terraform-docs-v0.17.0-{{ ansible_system }}-amd64.tar.gz"
-        dest: "/tmp/terraform-docs.tar.gz"
-
-    - name: Extract terraform-docs
-      ansible.builtin.unarchive:
-        src: "/tmp/terraform-docs.tar.gz"
-        dest: "/tmp"
-        remote_src: yes
-        creates: "/tmp/terraform-docs"
-
-    - name: Set execute permissions for terraform-docs
-      ansible.builtin.file:
-        path: "/tmp/terraform-docs"
-        mode: "0755"
-
-    - name: Move terraform-docs to a directory in PATH
-      ansible.builtin.command: "mv /tmp/terraform-docs /usr/local/bin/terraform-docs"
 
