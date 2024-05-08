@@ -30,10 +30,6 @@
       ansible.builtin.shell: "curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash"
       tags: tflint
 
-    - name: Move TFLint to a directory in PATH
-      ansible.builtin.command: "mv /usr/local/bin/tflint /usr/local/bin/"
-      tags: tflint
-
 # precommit
 
     - name: Install pre-commit (pip3)
@@ -58,9 +54,6 @@
       ansible.builtin.command: "/tmp/install_tfswitch.sh"
       tags: tfswitch
 
-    - name: Move tfswitch to a directory in PATH
-      ansible.builtin.command: "mv /usr/local/bin/tfswitch /usr/local/bin/"
-      tags: tfswitch
 
 # tfenv
 
