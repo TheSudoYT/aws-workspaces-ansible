@@ -3,7 +3,7 @@
         name: '*'
         state: latest
         exclude:
-          - vscode
+          - code
       when: ansible_os_family == 'RedHat'
 
     - name: Install required software packages
