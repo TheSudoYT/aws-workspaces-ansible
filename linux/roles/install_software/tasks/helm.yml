@@ -13,8 +13,10 @@
       register: helm_check
       ignore_errors: true
       changed_when: false
+      become: false
 
 
     - name: Execute Helm installation script
       ansible.builtin.command: "/tmp/get_helm.sh"
       when: helm_check.rc != 0
+      become: false
