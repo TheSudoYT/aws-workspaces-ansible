@@ -14,7 +14,7 @@
 
     - name: Install vscode
       yum:
-        name: code
+        name: code-1.85.0
         state: present
 
     - name: Install Visual Studio Code extensions
