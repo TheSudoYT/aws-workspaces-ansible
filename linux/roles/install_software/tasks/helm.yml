@@ -1,0 +1,12 @@
+    - name: Download Helm installation script
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
+        dest: "/tmp/get_helm.sh"
+
+    - name: Set execute permissions for installation script
+      ansible.builtin.file:
+        path: "/tmp/get_helm.sh"
+        mode: "u+x"
+
+    - name: Execute Helm installation script
+      ansible.builtin.command: "/tmp/get_helm.sh"

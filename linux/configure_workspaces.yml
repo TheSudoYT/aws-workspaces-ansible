@@ -1,0 +1,8 @@
+---
+- name: Configure AWS Workspaces
+  hosts: workspaces
+  become: yes
+
+  roles:
+    - dlp-compliance
+    - install_software

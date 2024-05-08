@@ -1,0 +1,22 @@
+    - name: Import Microsoft GPG key
+      ansible.builtin.shell: "sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+
+    - name: Add Visual Studio Code repository
+      copy:
+        content: |
+          [code]
+          name=Visual Studio Code
+          baseurl=https://packages.microsoft.com/yumrepos/vscode
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+        dest: /etc/yum.repos.d/vscode.repo
+
+    - name: Install vscode
+      yum:
+        name: code
+        state: present
+
+    - name: Install Visual Studio Code extensions
+      ansible.builtin.shell: "code --install-extension {{ item }}"
+      loop: "{{ vscode_extensions }}"

@@ -1,0 +1,7 @@
+- name: Copy wsp.conf to /etc/wsp/wsp.conf
+  ansible.builtin.copy:
+    src: wsp.conf
+    dest: /etc/wsp/wsp.conf
+    owner: root
+    group: root
+    mode: '0644'

@@ -1,0 +1,29 @@
+    - name: Update package cache
+      yum:
+        name: '*'
+        state: latest
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install required software packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ software_to_install }}"
+
+    - name: Include terraform tasks
+      include_tasks: tasks/terraform.yml
+
+    - name: Include Vault tasks
+      include_tasks: tasks/vault.yml
+
+    - name: Include VSCode tasks
+      include_tasks: tasks/vscode.yml
+
+    - name: Include kubectl tasks
+      include_tasks: tasks/kubectl.yml
+
+    - name: Include terraform extras tasks
+      include_tasks: tasks/terraform-extras.yml
+
+    - name: Include Helm installation tasks
+      include_tasks: tasks/helm.yml
