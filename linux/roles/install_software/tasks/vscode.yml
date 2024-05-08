@@ -1,7 +1,7 @@
     - name: Import Microsoft GPG key
       ansible.builtin.shell: "sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
       tags: vscode
-      
+
     - name: Add Visual Studio Code repository
       copy:
         content: |
@@ -20,7 +20,8 @@
         state: present
       tags: vscode
 
-    - name: Install Visual Studio Code extensions
-      ansible.builtin.shell: "code --install-extension {{ item }}"
-      loop: "{{ vscode_extensions }}"
-      tags: vscode
+# Dont need to do this right now. Users can do it themselves.
+    # - name: Install Visual Studio Code extensions
+    #   ansible.builtin.shell: "code --install-extension {{ item }}"
+    #   loop: "{{ vscode_extensions }}"
+    #   tags: vscode

@@ -22,22 +22,23 @@ terraform_versions:
   - 1.1.0
   - 1.0.0
 
-vscode_extensions:
-  - golang.go
-  - hashicorp.terraform
-  - be5invis.toml
-  - eamodio.gitlens
-  - eriklynd.json-tools
-  - ms-azuretools.vscode-docker
-  - ms-kubernetes-tools.vscode-kubernetes-tools
-  - ms-python.isort
-  - ms-python.python
-  - ms-python.vscode-pylance
-  - oliversturm.fix-json
-  - redhat.vscode-yaml
-  - sdh101wyy.markdown-preview-enhanced
-  - wayou.vscode-todo-highlight
-  - yzhang.markdown-all-in-one
+# Dont need to do this right now. Users can do it themselves.
+# vscode_extensions:
+#   - golang.go
+#   - hashicorp.terraform
+#   - be5invis.toml
+#   - eamodio.gitlens
+#   - eriklynd.json-tools
+#   - ms-azuretools.vscode-docker
+#   - ms-kubernetes-tools.vscode-kubernetes-tools
+#   - ms-python.isort
+#   - ms-python.python
+#   - ms-python.vscode-pylance
+#   - oliversturm.fix-json
+#   - redhat.vscode-yaml
+#   - sdh101wyy.markdown-preview-enhanced
+#   - wayou.vscode-todo-highlight
+#   - yzhang.markdown-all-in-one
 
 terraform_install_dir: "/opt/terraform-versions"
 active_terraform_version: "1.8.0"  
