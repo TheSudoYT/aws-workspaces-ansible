@@ -17,6 +17,6 @@
 
     - name: Set symlink for Vault
       file:
-        src: "{{ vault_install_dir }}/vault_{{ vault_version }}/vault"
+        src: "{{ vault_install_dir }}/vault"
         dest: "/usr/local/bin/vault"
         state: link
