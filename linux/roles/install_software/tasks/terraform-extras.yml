@@ -30,9 +30,6 @@
 
 # precommit
 
-    - name: Install pre-commit (pip)
-      ansible.builtin.command: "pip install pre-commit"
-
     - name: Install pre-commit (pip3)
       ansible.builtin.command: "pip3 install pre-commit"
 
