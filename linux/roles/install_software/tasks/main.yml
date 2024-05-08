@@ -2,6 +2,8 @@
       yum:
         name: '*'
         state: latest
+        exclude:
+          - vscode
       when: ansible_os_family == 'RedHat'
 
     - name: Install required software packages

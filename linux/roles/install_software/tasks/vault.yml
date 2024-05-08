@@ -2,11 +2,13 @@
       file:
         path: "{{ vault_install_dir }}"
         state: directory
+      tags: vault
 
     - name: Download Vault binary
       get_url:
         url: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip"
         dest: "{{ vault_install_dir }}/vault_{{ vault_version }}.zip"
+      tags: vault
 
     - name: Extract Vault binary
       ansible.builtin.unarchive:
@@ -14,9 +16,11 @@
         dest: "{{ vault_install_dir }}"
         remote_src: yes
         creates: "{{ vault_install_dir }}/vault_{{ vault_version }}"
+      tags: vault
 
     - name: Set symlink for Vault
       file:
         src: "{{ vault_install_dir }}/vault"
         dest: "/usr/local/bin/vault"
         state: link
+      tags: vault

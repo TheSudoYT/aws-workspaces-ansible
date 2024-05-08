@@ -4,6 +4,7 @@
       ansible.builtin.get_url:
         url: "https://terraform-docs.io/dl/v0.17.0/terraform-docs-v0.17.0-{{ ansible_system }}-amd64.tar.gz"
         dest: "/tmp/terraform-docs.tar.gz"
+      tags: terraform-docs
 
     - name: Extract terraform-docs
       ansible.builtin.unarchive:
@@ -11,27 +12,33 @@
         dest: "/tmp"
         remote_src: yes
         creates: "/tmp/terraform-docs"
+      tags: terraform-docs
 
     - name: Set execute permissions for terraform-docs
       ansible.builtin.file:
         path: "/tmp/terraform-docs"
         mode: "0755"
+      tags: terraform-docs
 
     - name: Move terraform-docs to a directory in PATH
       ansible.builtin.command: "mv /tmp/terraform-docs /usr/local/bin/terraform-docs"
+      tags: terraform-docs
 
 # tflint
 
     - name: Download and install TFLint
       ansible.builtin.shell: "curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash"
+      tags: tflint
 
     - name: Move TFLint to a directory in PATH
       ansible.builtin.command: "mv /usr/local/bin/tflint /usr/local/bin/"
+      tags: tflint
 
 # precommit
 
     - name: Install pre-commit (pip3)
       ansible.builtin.command: "pip3 install pre-commit"
+      tags: pre-commit
 
 # tfswitch
   
@@ -39,17 +46,21 @@
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh"
         dest: "/tmp/install_tfswitch.sh"
-  
+      tags: tfswitch
+
     - name: Set execute permissions for tfswitch
       ansible.builtin.file:
         path: "/tmp/install_tfswitch.sh"
         mode: "0755"
-  
+      tags: tfswitch
+
     - name: Install tfswitch
       ansible.builtin.command: "/tmp/install_tfswitch.sh"
-  
+      tags: tfswitch
+
     - name: Move tfswitch to a directory in PATH
       ansible.builtin.command: "mv /usr/local/bin/tfswitch /usr/local/bin/"
+      tags: tfswitch
 
 # tfenv
 
@@ -57,9 +68,11 @@
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/tfutils/tfenv/master/bin/tfenv"
         dest: "/usr/local/bin/tfenv"
-  
+      tags: tfenv
+
     - name: Set execute permissions for tfenv
       ansible.builtin.file:
         path: "/usr/local/bin/tfenv"
         mode: "0755"
+      tags: tfenv
 
