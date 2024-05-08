@@ -3,24 +3,28 @@
       file:
         path: "{{ terraform_install_dir }}"
         state: directory
+      tags: terraform
 
     - name: Download Terraform binaries
       get_url:
         url: "https://releases.hashicorp.com/terraform/{{ item }}/terraform_{{ item }}_linux_amd64.zip"
         dest: "{{ terraform_install_dir }}/terraform_{{ item }}.zip"
       loop: "{{ terraform_versions }}"
+      tags: terraform
     
     - name: Extract Terraform binaries
       ansible.builtin.unarchive:
         src: "{{ terraform_install_dir }}/terraform_{{ item }}.zip"
-        dest: "{{ terraform_install_dir }}_{{ item }"
+        dest: "{{ terraform_install_dir }}_{{ item }}"
         remote_src: yes
         creates: "{{ terraform_install_dir }}/terraform_{{ item }}"
       loop: "{{ terraform_versions }}"
+      tags: terraform
 
     - name: Set symlink for active Terraform version
       file:
         src: "{{ terraform_install_dir }}/terraform_{{ active_terraform_version }}"
         dest: "/usr/local/bin/terraform"
         state: link
+      tags: terraform
 
