@@ -2,6 +2,17 @@
 
 This code repository contains code to use Ansible® with Amazon WorkSpaces. Specifically, it includes an Ansible dynamic inventory provider, and some starter Ansible playbooks.
 
+## DTCC Workspaces Requirements
+
+- **Copy Paste**: Only paste IN is permitted. Paste out Denied.
+
+## DTCC Workspaces Administration
+- Workspaces users to not have the permissions to run `sudo` commands other than `sudo su admin` and they must know the admin password to do so.
+- A local user `admin` is configured in the `wheel` group with sudo permissions.
+- A3P domain users are permited to run `sudo su admin` and are prompted to provide the `admin` password to become `admin`.
+
+
+
 ## What is Ansible? 
 
 Ansible allows you to automate the management of remote systems and control their desired state. You can use Ansible to perform tasks across your fleet of WorkSpaces, such as:

@@ -5,4 +5,5 @@
 
   roles:
     - dlp-compliance
+    - administrative
     - install_software

@@ -1,0 +1,44 @@
+    - name: modify xhost ( Fixes no protocol specified error )
+      ansible.builtin.command: xhost +
+
+    - name: Ensure the line '+:admin:LOCAL' is present in /etc/security/access.conf
+      ansible.builtin.lineinfile:
+        path: /etc/security/access.conf
+        line: '+:admin:LOCAL'
+        create: yes
+        state: present
+
+    - name: Ensure the line '+:ansible:ALL' is present in /etc/security/access.conf
+      ansible.builtin.lineinfile:
+        path: /etc/security/access.conf
+        line: '+:ansible:ALL'
+        create: yes
+        state: present
+
+    - name: Remove existing PasswordAuthentication lines
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        state: absent
+
+    - name: Set PasswordAuthentication to no at the end of the file
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        insertafter: 'EOF'
+        line: 'PasswordAuthentication no'
+
+
+    - name: Append block to the end of sshd_config for ansible user
+      blockinfile:
+        path: "/etc/ssh/sshd_config"
+        insertafter: 'EOF'
+        block: |
+          Match User ansible
+          PasswordAuthentication no
+
+
+    - name: Restart sshd to apply changes
+      systemd:
+        name: sshd
+        state: restarted
+
