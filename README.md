@@ -5,13 +5,18 @@ This code repository contains code to use Ansible® with Amazon WorkSpaces. Spec
 ## DTCC Workspaces Requirements
 
 - **Copy Paste**: Only paste IN is permitted. Paste out Denied.
+- **Audio**: Audio in is enabled.
+- **Timezone Redirect**: Timezone redirect is enabled
+- **Restrict Admin Users**: a3p users are not admins and cannot run sudo.
 
 ## DTCC Workspaces Administration
 - Workspaces users to not have the permissions to run `sudo` commands other than `sudo su admin` and they must know the admin password to do so.
 - A local user `admin` is configured in the `wheel` group with sudo permissions.
 - A3P domain users are permited to run `sudo su admin` and are prompted to provide the `admin` password to become `admin`.
 
+## Troubleshooting
 
+Users might see the error `No protocol specified error` in their terminal when running some commands. Simply run the command `xhost +` to stop the error.
 
 ## What is Ansible? 
 
