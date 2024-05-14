@@ -5,3 +5,11 @@
     owner: root
     group: root
     mode: '0644'
+
+- name: Copy pcoip-agent.conf to /etc/pcoip-agent/pcoip-agent.conf
+  ansible.builtin.copy:
+    src: pcoip-agent.conf
+    dest: /etc/pcoip-agent/pcoip-agent.conf
+    owner: root
+    group: root
+    mode: '0644'
