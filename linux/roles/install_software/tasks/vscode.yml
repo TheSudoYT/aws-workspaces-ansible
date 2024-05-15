@@ -1,27 +1,53 @@
-    - name: Import Microsoft GPG key
-      ansible.builtin.shell: "sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-      tags: vscode
+#     - name: Import Microsoft GPG key
+#       ansible.builtin.shell: "sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+#       tags: vscode
 
-    - name: Add Visual Studio Code repository
-      copy:
-        content: |
-          [code]
-          name=Visual Studio Code
-          baseurl=https://packages.microsoft.com/yumrepos/vscode
-          enabled=1
-          gpgcheck=1
-          gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-        dest: /etc/yum.repos.d/vscode.repo
-      tags: vscode
+#     - name: Add Visual Studio Code repository
+#       copy:
+#         content: |
+#           [code]
+#           name=Visual Studio Code
+#           baseurl=https://packages.microsoft.com/yumrepos/vscode
+#           enabled=1
+#           gpgcheck=1
+#           gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+#         dest: /etc/yum.repos.d/vscode.repo
+#       tags: vscode
 
-    - name: Install vscode
-      yum:
-        name: code-1.85.0
-        state: present
-      tags: vscode
+#     - name: Install vscode
+#       yum:
+#         name: code-1.85.0
+#         state: present
+#       tags: vscode
 
-# Dont need to do this right now. Users can do it themselves.
-    # - name: Install Visual Studio Code extensions
-    #   ansible.builtin.shell: "code --install-extension {{ item }}"
-    #   loop: "{{ vscode_extensions }}"
-    #   tags: vscode
+# # Dont need to do this right now. Users can do it themselves.
+#     - name: Install Visual Studio Code extensions
+#       ansible.builtin.shell: "code --install-extension {{ item }}"
+#       loop: "{{ vscode_extensions }}"
+#       tags: vscode
+
+#     - name: Create extensions directory
+#       file:
+#         path: /usr/share/code/extensions
+#         state: directory
+
+#     - name: Copy VS Code extensions to the global directory
+#       copy:
+#         src: /path/to/local/example-extension.vsix
+#         dest: /usr/share/code/extensions/
+
+#     - name: Install VS Code extensions
+#       shell: code --install-extension /usr/share/code/extensions/example-extension.vsix
+
+#     - name: Create user extensions install script
+#       copy:
+#         content: |
+#           #!/bin/bash
+#           EXTENSIONS_DIR="/usr/share/code/extensions"
+#           USER_EXTENSIONS_DIR="$HOME/.vscode/extensions"
+#           if [ -d "$EXTENSIONS_DIR" ]; then
+#               mkdir -p "$USER_EXTENSIONS_DIR"
+#               cp -r "$EXTENSIONS_DIR"/* "$USER_EXTENSIONS_DIR"
+#           fi
+#         dest: /usr/local/bin/install-vscode-extensions.sh
+#         mode: '0755'

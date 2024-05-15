@@ -22,7 +22,7 @@ terraform_versions:
   - 1.1.0
   - 1.0.0
 
-# Dont need to do this right now. Users can do it themselves.
+# Not working yet. Configured these manually.
 # vscode_extensions:
 #   - golang.go
 #   - hashicorp.terraform

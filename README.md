@@ -10,13 +10,22 @@ This code repository contains code to use Ansible® with Amazon WorkSpaces. Spec
 - **Restrict Admin Users**: a3p users are not admins and cannot run sudo.
 
 ## DTCC Workspaces Administration
-- Workspaces users to not have the permissions to run `sudo` commands other than `sudo su admin` and they must know the admin password to do so.
-- A local user `admin` is configured in the `wheel` group with sudo permissions.
-- A3P domain users are permited to run `sudo su admin` and are prompted to provide the `admin` password to become `admin`.
+- Workspaces users to not have the permissions to run `sudo` commands.
+- A local user `admin` is configured with sudo permissions.
+- A3P domain users are permited to run `su admin` and are prompted to provide the `admin` password to become `admin`.
 
 ## Troubleshooting
 
 Users might see the error `No protocol specified error` in their terminal when running some commands. Simply run the command `xhost +` to stop the error.
+
+## VSCode Extenions
+
+VSCode extensions are preinstalled in `/usr/share/vscode-extentions/extensions`. Users can run the following commands to install them for their user profile:
+
+```bash
+cd ~/.vscode/extensions
+cp -R /usr/share/vscode-extensions/extensions/* .
+```
 
 ## What is Ansible? 
 
